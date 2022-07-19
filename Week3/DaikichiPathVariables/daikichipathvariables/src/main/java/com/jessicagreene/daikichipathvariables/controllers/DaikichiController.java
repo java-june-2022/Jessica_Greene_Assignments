@@ -1,4 +1,4 @@
-package com.jessicagreene.daikichipathvariables;
+package com.jessicagreene.daikichipathvariables.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
