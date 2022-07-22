@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container text-center">
 		<p class="mt-5">You have visited <a href="/your_server">http:your_server</a> ${visitCount} times.</p>
-		<a href="/your_server">Test another visit?</a>
+		<a type="button" class="btn btn-primary" href="/your_server">Test Another Visit</a>
+		<a type="button" class="btn btn-danger" href="/your_server/reset">Reset Visit Count</a>
 	</div>
 </body>
 </html>

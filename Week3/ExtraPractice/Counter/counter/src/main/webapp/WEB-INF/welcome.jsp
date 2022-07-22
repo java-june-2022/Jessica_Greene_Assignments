@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center mt-5">Welcome User!</h1>
+	<div class="container text-center">
+		<h1 class="mt-5">Welcome User!</h1>
+		<a type="button" class="btn btn-link" href="/your_server/counter">View Visit Counts</a>
+	</div>
 </body>
 </html>

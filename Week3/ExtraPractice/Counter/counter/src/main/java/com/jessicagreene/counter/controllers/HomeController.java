@@ -22,4 +22,9 @@ public class HomeController {
 		}	
 		return "counter.jsp";
 	}
+	@RequestMapping("/reset")
+	public String reset(HttpSession session) {
+		session.invalidate();
+		return "redirect:/your_server/counter";
+	}
 }
