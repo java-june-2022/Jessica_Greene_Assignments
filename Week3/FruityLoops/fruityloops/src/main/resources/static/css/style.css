@@ -1,0 +1,9 @@
+@charset "UTF-8";
+h1 {
+	color: pink;
+}
+
+.pink-box {
+	background-color: pink;
+	padding: 20px 20px 10px;
+}
