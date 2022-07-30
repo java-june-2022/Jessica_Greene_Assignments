@@ -24,17 +24,21 @@
 		<h1 class="text-primary">Save Travels</h1>
 		<table class="table table-striped table-bordered mb-5">
 			<tr>
-				<th scope="col">Expense</th>
-				<th scope="col">Vendor</th>
-				<th scope="col">Amount</th>
+				<th scope="col" class="text-center">Expense</th>
+				<th scope="col" class="text-center">Vendor</th>
+				<th scope="col" class="text-center">Amount</th>
+				<th scope="col" class="text-center">Actions</th>
 			</tr>
 			<c:forEach items="${expenses}" var="expense">
 				<tr>
-					<td><c:out value="${expense.name}"/></td>
-					<td><c:out value="${expense.vendor}"/></td>
-					<td>
+					<td class="text-center"><c:out value="${expense.name}"/></td>
+					<td class="text-center"><c:out value="${expense.vendor}"/></td>
+					<td class="text-center">
 						<fmt:setLocale value = "en_US"/>
          				<fmt:formatNumber value = "${expense.amount}" type = "currency"/>
+         			</td>
+         			<td class="text-center">
+         				<a href="/expenses/edit/${expense.id}">edit</a>
          			</td>
 				</tr>
 			</c:forEach>
