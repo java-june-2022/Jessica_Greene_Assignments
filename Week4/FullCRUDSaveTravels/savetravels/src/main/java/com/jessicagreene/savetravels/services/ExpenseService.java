@@ -31,4 +31,9 @@ public class ExpenseService {
 	public Expense updateExpense(Expense expense) {
 		return expenseRepo.save(expense);
 	}
+
+	public void deleteExpense(Long id) {
+		expenseRepo.deleteById(id);
+		
+	}
 }

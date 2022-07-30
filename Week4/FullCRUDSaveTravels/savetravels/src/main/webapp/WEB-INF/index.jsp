@@ -31,14 +31,22 @@
 			</tr>
 			<c:forEach items="${expenses}" var="expense">
 				<tr>
-					<td class="text-center"><c:out value="${expense.name}"/></td>
+					<td class="text-center">
+						<a href="/expenses/${expense.id}">
+							<c:out value="${expense.name}"/>
+						</a>
+					</td>
 					<td class="text-center"><c:out value="${expense.vendor}"/></td>
 					<td class="text-center">
-						<fmt:setLocale value = "en_US"/>
+						<fmt:setLocale value = "en_US"/>													<!-- jsp money formatter -->
          				<fmt:formatNumber value = "${expense.amount}" type = "currency"/>
          			</td>
-         			<td class="text-center">
-         				<a href="/expenses/edit/${expense.id}">edit</a>
+         			<td class="text-center d-flex justify-content-around">
+         				<a href="/expenses/edit/${expense.id}">edit</a>															
+						<form action="/expenses/delete/${expense.id}" method="post">						<!--  Delete button -->
+    						<input type="hidden" name="_method" value="delete">
+    						<input type="submit" value="Delete" class="btn bg-danger text-white">
+						</form>
          			</td>
 				</tr>
 			</c:forEach>
