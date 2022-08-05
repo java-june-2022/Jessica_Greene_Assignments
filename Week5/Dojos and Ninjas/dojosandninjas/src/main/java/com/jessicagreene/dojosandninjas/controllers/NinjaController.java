@@ -22,9 +22,9 @@ import com.jessicagreene.dojosandninjas.services.NinjaService;
 public class NinjaController {
 
 	@Autowired
-	DojoService dojoService;
+	private DojoService dojoService;
 	@Autowired
-	NinjaService ninjaService;
+	private NinjaService ninjaService;
 		
 	@GetMapping("")
 	public String dojoIndex() {

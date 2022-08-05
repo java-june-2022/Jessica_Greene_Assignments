@@ -11,7 +11,7 @@ import com.jessicagreene.dojosandninjas.repositories.DojoRepository;
 @Service
 public class DojoService {
 	@Autowired
-	DojoRepository dojoRepository;
+	private DojoRepository dojoRepository;
 	
 	//Read all
 	public List<Dojo> findAllDojos() {

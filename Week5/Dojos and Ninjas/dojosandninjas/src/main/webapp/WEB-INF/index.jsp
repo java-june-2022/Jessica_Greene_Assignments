@@ -20,26 +20,28 @@
 <body>
    <div class="container">
    		<h1 class="text-center">Welcome to Dojos and Ninjas</h1>
-   			<div class="row justify-content-between">
-   				<div class="bg-light p-3 col-md-5">
-   					<div class="d-flex justify-content-between">
-			   			<h2>Dojos</h2>
-						<a href="/dojos/new" class="btn btn-primary"> Create New Dojo</a>
-   					</div>
-					<c:forEach items="${dojos}" var="dojo">
-						<a href="/dojos/${dojo.id}"> <c:out value="${dojo.name}" /></a>
-					</c:forEach>
-				</div>
-   				<div class="bg-light p-3 col-md-5">
-   					<div class="d-flex justify-content-between">
-	   					<h2>Ninjas</h2>	
-	   					<a href="/ninjas/new" class="btn btn-primary"> Add Ninja</a>
-   					</div>
-   					<c:forEach items="${ninjas}" var="ninja">
-		   				<a href="/ninjas/${ninja.id}"><c:out value="${ninja.firstName}"/> <c:out value="${ninja.lastName}"/></a>
-			   		</c:forEach>
+   		<div class="row justify-content-between">
+   			<div class="bg-light p-3 col-md-5">
+   				<div class="d-flex justify-content-between">
+		   			<h2>Dojos</h2>
+					<a href="/dojos/new" class="btn btn-primary"> Add New Dojo</a>
    				</div>
+				<c:forEach items="${dojos}" var="dojo">
+					<a href="/dojos/${dojo.id}" class="d-block"> <c:out value="${dojo.name}" /></a>
+				</c:forEach>
+			</div>
+   			<div class="bg-light p-3 col-md-5">
+   				<div class="d-flex justify-content-between">
+	   				<h2>Ninjas</h2>	
+	   				<a href="/ninjas/new" class="btn btn-primary"> Add New Ninja</a>
+   				</div>
+   				<c:forEach items="${ninjas}" var="ninja">
+   					<p class="d-block">
+		   				<c:out value="${ninja.firstName}"/> <c:out value="${ninja.lastName}"/> (<c:out value="${ninja.dojo.name}"/>)
+   					</p>
+		   		</c:forEach>
    			</div>
+   		</div>
    </div>
 </body>
 </html>

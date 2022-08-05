@@ -34,9 +34,9 @@
 		  <tbody>
 		  	<c:forEach items="${dojo.ninjas}" var="ninja">
 			    <tr>
-			      <td>${ninja.firstName}</td>
-			      <td>${ninja.lastName}</td>
-			      <td>${ninja.age}</td>
+			      <td><c:out value="${ninja.firstName}"/></td>
+			      <td><c:out value="${ninja.lastName}"/></td>
+			      <td><c:out value="${ninja.age}"/></td>
 			    </tr>
 		    </c:forEach>
 		  </tbody>

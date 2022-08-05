@@ -11,9 +11,9 @@ import com.jessicagreene.dojosandninjas.repositories.NinjaRepository;
 @Service
 public class NinjaService {
 	@Autowired
-	NinjaRepository ninjaRepository;
+	private NinjaRepository ninjaRepository;
 
-	//Get all ninjas
+	//Read all
 	public List<Ninja> findAllNinjas() {
 		return ninjaRepository.findAll();
 	}

@@ -21,9 +21,9 @@ import com.jessicagreene.dojosandninjas.services.NinjaService;
 public class DojoController {
 	
 	@Autowired
-	DojoService dojoService;
+	private DojoService dojoService;
 	@Autowired
-	NinjaService ninjaService;
+	private NinjaService ninjaService;
 	
 	@GetMapping("")
 	public String index(Model model) {
