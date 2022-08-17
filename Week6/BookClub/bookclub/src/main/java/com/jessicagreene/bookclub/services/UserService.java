@@ -1,13 +1,13 @@
-package com.codingdojo.loginandregistration.services;
+package com.jessicagreene.bookclub.services;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
-import com.codingdojo.loginandregistration.models.LoginUser;
-import com.codingdojo.loginandregistration.models.User;
-import com.codingdojo.loginandregistration.repositories.UserRepository;
+import com.jessicagreene.bookclub.models.LoginUser;
+import com.jessicagreene.bookclub.models.User;
+import com.jessicagreene.bookclub.repositories.UserRepository;
 
 @Service
 public class UserService {
@@ -20,24 +20,24 @@ public class UserService {
 	//This method will be called from the controller when a user submits a registration form
 	public User register(User newUserData, BindingResult result) {
 		
-		User potentialUser = userRepository.findByEmail(newUserData.getEmail()).orElse(null);		//Search db for email in new user data
-		if(potentialUser != null) {																	//If email already taken,
+		User newUser = userRepository.findByEmail(newUserData.getEmail()).orElse(null);				//Search db for email in new user data
+		if(newUser != null) {																		//If email already taken,
 			result.rejectValue("email", "Taken",  "The Email is already taken!");					//assign error to result
-			return null;
 		}
-		
 		String passwordEntered = newUserData.getPassword();
 		if(!passwordEntered.equals(newUserData.getConfirm())) {										//If password does not match confirmation password,
 			result.rejectValue("confirm", "Matches", "The Confirm Password must match Password!");  //assign error to result
-			return null;
 		}
 
+
+		
 		if(result.hasErrors()) {																	//If result has errors
 			return null;																			//Exit the method and go back to controller to hand response
-		} 																						//If no errors
-		String hashedPassword = BCrypt.hashpw(newUserData.getPassword(), BCrypt.gensalt());		//hash password, 
-		newUserData.setPassword(hashedPassword); 												//set password,
-		return userRepository.save(newUserData);												//then save user to database
+		} else {																					//If no errors
+			String hashedPassword = BCrypt.hashpw(newUserData.getPassword(), BCrypt.gensalt());		//hash password, 
+			newUserData.setPassword(hashedPassword); 												//set password,
+			return userRepository.save(newUserData);												//then save user to database
+		}
 	}
 
 	//This method will be called from the controllers when a a user submits a login form
@@ -45,21 +45,21 @@ public class UserService {
 		
 		User user = userRepository.findByEmail(newLoginData.getEmail()).orElse(null);				//Find user in DB by email
 		if(user == null) {																			//If user is not present
-			result.rejectValue("email", "NotFound",  "Invalid login.");								//assign error to result
-			return null;
-		}
+			result.rejectValue("email", "NotFound",  "Invalid email.");								//assign error to result
+		} else {
 		
-		String passwordEntered = newLoginData.getPassword();
-		if(!BCrypt.checkpw(passwordEntered, user.getPassword())) {								//If password entered does not match user's password
-			result.rejectValue("password", "Matches", "Invalid login.");						//assign error to result
-			return null;
+			String passwordEntered = newLoginData.getPassword();
+			if(!BCrypt.checkpw(passwordEntered, user.getPassword())) {								//If password entered does not match user's password
+				result.rejectValue("password", "Matches", "Invalid password.");						//assign error to result
+			}
 		}
 		
 		if(result.hasErrors() ) {
 			return null;																		//Exit the method and go back to controller to hand response
-		} 
-			
-		return user;													//Otherwise, return the user object
+		} else {
+			return userRepository.save(user);													//Otherwise, return the user object
+	
+		}
 	}
 	
 	//read one

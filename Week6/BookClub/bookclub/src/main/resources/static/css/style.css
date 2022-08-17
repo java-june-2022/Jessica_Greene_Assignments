@@ -1,0 +1,7 @@
+@charset "UTF-8";
+.text-purple {
+	color: #9437ff;
+}
+body.lightgray {
+	background-color: LightGray;
+}

@@ -1,4 +1,4 @@
-package com.codingdojo.loginandregistration.controllers;
+package com.jessicagreene.bookclub.controllers;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -11,19 +11,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.codingdojo.loginandregistration.models.LoginUser;
-import com.codingdojo.loginandregistration.models.User;
-import com.codingdojo.loginandregistration.services.UserService;
+import com.jessicagreene.bookclub.models.LoginUser;
+import com.jessicagreene.bookclub.models.User;
+import com.jessicagreene.bookclub.services.BookService;
+import com.jessicagreene.bookclub.services.UserService;
 
 @Controller
 public class HomeController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private BookService bookService;
+	
 	@GetMapping("/")
 	public String index(Model model) {
 		//Bind empty User and LoginUser objects to the JSP to capture form input
-		model.addAttribute("newUser", new User();
+		User newUser = new User();
+		model.addAttribute("newUser", newUser);
 		model.addAttribute("newLogin", new LoginUser());
 		return "index.jsp";
 	}
@@ -69,6 +74,7 @@ public class HomeController {
     		return "redirect:/";
     	} else {
 			model.addAttribute("currentUser", userService.getUserById(userId));
+			model.addAttribute("books", bookService.findAllBooks());
 			return "dashboard.jsp";
     	}
     }
