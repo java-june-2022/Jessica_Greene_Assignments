@@ -42,8 +42,9 @@ public class BookController {
 
 	//Read
 	@GetMapping("books/{id}")
-	public String showBook(@PathVariable("id") Long id, Model model) {
+	public String showBook(@PathVariable("id") Long id, Model model, HttpSession session) {
 		model.addAttribute("book", bookService.findBookById(id));
+		model.addAttribute("userId", (Long) session.getAttribute("userId"));
 		return "books/show.jsp";
 	}
 	
@@ -65,6 +66,7 @@ public class BookController {
 			model.addAttribute("bookInfo", bookService.findBookById(id));
 			return "books/edit.jsp";
 		}
+		bookService.updateBook(book);
 		return "redirect:/books/{id}";
 	}
 }

@@ -18,7 +18,7 @@
 	<div class="container my-3 mx-auto d-flex">
 	    <div class="col bg-light p-3 mb-5 w-25 me-5">
 	    	<div class= "d-flex justify-content-between">
-				<h1>Add a Book to Your Shelf!  ${userId }</h1>
+				<h1>Add a Book to Your Shelf! </h1>
 				<a href="/dashboard">back to the shelves</a>
 	    	</div>
 			<form:form action="/books/create" method="post" modelAttribute="book">

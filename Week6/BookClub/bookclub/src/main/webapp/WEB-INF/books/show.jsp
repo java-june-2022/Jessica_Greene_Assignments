@@ -32,7 +32,9 @@
 		<hr>
 			<p class="my-4"> <c:out value="${ book.thoughts }" /></p>
 		<hr>
-		<a href="/books/${book.id}/edit" class="btn btn-light float-end">Edit</a>
+		<c:if test="${book.postedBy.id == userId }">
+			<a href="/books/${book.id}/edit" class="btn btn-light float-end">Edit</a>
+		</c:if>
 	</div>
 </body>
 </html>
